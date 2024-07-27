@@ -3,7 +3,7 @@ import requests
 from allure_commons.types import AttachmentType
 from selene import browser
 
-import config
+import settings
 
 
 def add_screenshot():
@@ -23,7 +23,7 @@ def add_xml():
 def add_video(session_id):
     browserstack_session = requests.get(
         url=f'https://api.browserstack.com/app-automate/sessions/{session_id}.json',
-        auth=(config.username, config.access_key),
+        auth=(settings.config.bstack_userName, settings.config.bstack_accessKey),
     ).json()
     video_url = browserstack_session['automation_session']['video_url']
 

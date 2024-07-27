@@ -35,7 +35,35 @@ def test_search_selenium():
             (AppiumBy.ID, "org.wikipedia.alpha:id/page_list_item_title")
         ).click()
 
-    with step('Подтвердить результат'):
-        browser.element((AppiumBy.CLASS_NAME, "android.widget.TextView")).should(
-            have.exact_text("Selenium (software)")
+
+def test_getting_started():
+
+    with step('Проверить тексты заголовков onboarding screen'):
+
+        browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/primaryTextView')).should(
+            have.exact_text('The Free Encyclopedia\n…in over 300 languages')
+        )
+
+        browser.element(
+            (AppiumBy.ID, 'org.wikipedia.alpha:id/fragment_onboarding_forward_button')
+        ).click()
+
+        browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/primaryTextView')).should(
+            have.exact_text('New ways to explore')
+        )
+
+        browser.element(
+            (AppiumBy.ID, 'org.wikipedia.alpha:id/fragment_onboarding_forward_button')
+        ).click()
+
+        browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/primaryTextView')).should(
+            have.exact_text('Reading lists with sync')
+        )
+
+        browser.element(
+            (AppiumBy.ID, 'org.wikipedia.alpha:id/fragment_onboarding_forward_button')
+        ).click()
+
+        browser.element((AppiumBy.ID, 'org.wikipedia.alpha:id/primaryTextView')).should(
+            have.exact_text('Data & Privacy')
         )

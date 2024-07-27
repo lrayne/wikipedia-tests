@@ -31,3 +31,4 @@ __pycache__/
 venv*/
 allure-results
 .env
+*.apk
