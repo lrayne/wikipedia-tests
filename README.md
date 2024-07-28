@@ -18,8 +18,8 @@ poetry install
 4. Создать `.env`, внутри него указать username и login от Browserstack
 
 ```dotenv
-bstack_username='username'
-bstack_accesskey='accesskey'
+bstack_username=username
+bstack_accesskey=accesskey
 ```
 
 5. Создать отдельные `.env` для необходимых контекстов запуска:
@@ -40,7 +40,7 @@ timeout=4
 
 <details><summary>Для запуска локально на реальном девайсе</summary>
 
-Наименование файла —`.env.local_emulator`, внутри него:
+Наименование файла —`.env.local_real_device`, внутри него:
 ```dotenv
 app=apk.apk
 remote_url=http://127.0.0.1:4723
@@ -57,8 +57,8 @@ timeout=5
 app=apk.apk
 remote_url=http://127.0.0.1:4723
 deviceName=DeviceName
-timeout=1
 udid=1233311
+timeout=1
 ```
 </details>
 
@@ -75,4 +75,9 @@ context='real_device' pytest tests/android
 
 ```bash
 context='local_real_device' pytest tests/android
+```
+
+7. Сформировать отчет
+```bash
+allure serve allure-results/
 ```

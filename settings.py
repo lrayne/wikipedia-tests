@@ -1,5 +1,5 @@
 import os
-from typing import Literal
+from typing import Literal, Optional
 import dotenv
 from dotenv import load_dotenv
 from appium.options.android import UiAutomator2Options
@@ -21,10 +21,10 @@ class Config(BaseSettings):
 
     app: str = 'app-alpha-universal-release.apk'
     deviceName: str = 'Google Pixel 5'
-    udid: str
+    udid: Optional[str] = None
     appWaitActivity: str = 'org.wikipedia.*'
 
-    remote_url: str = 'http://hub.browserstack.com'
+    remote_url: str = 'http://hub.browserstack.com/wd/hub'
 
     projectName: str = 'Project name'
     buildName: str = 'Build name'
