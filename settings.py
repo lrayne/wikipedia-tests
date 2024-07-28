@@ -16,20 +16,15 @@ class Config(BaseSettings):
     )
 
     base_url: str = 'https://www.wikipedia.org'
-    driver_name: str = 'chrome'
-    hold_driver_at_exit: bool = False
-
-    window_width: int = 1024
-    window_height: int = 768
 
     timeout: float = 3.0
 
     app: str = 'app-alpha-universal-release.apk'
     deviceName: str = 'Google Pixel 5'
-    udid: str = 'BGHBB20A07211632123121111'
+    udid: str
     appWaitActivity: str = 'org.wikipedia.*'
 
-    remote_url: str = 'http://hub.browserstack.com/wd/hub'
+    remote_url: str = 'http://hub.browserstack.com'
 
     projectName: str = 'Project name'
     buildName: str = 'Build name'

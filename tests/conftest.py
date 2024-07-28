@@ -17,14 +17,6 @@ def set_up_management():
             context=allure_commons._allure.StepContext
         )
 
-        if settings.config.context == 'local_web':
-            browser.config.base_url = settings.config.base_url
-            browser.config.window_width = settings.config.window_width
-            browser.config.window_height = settings.config.window_height
-            browser.config.driver_name = settings.config.driver_name
-            browser.config.hold_driver_at_exit = settings.config.hold_driver_at_exit
-            browser.config.timeout = settings.config.timeout
-
         if (
             settings.config.context == 'local_real_device'
             or settings.config.context == 'local_emulator'
@@ -43,10 +35,6 @@ def set_up_management():
     yield
 
     utils.allure.add_screenshot()
-
-    if settings.config.context == 'web':
-        utils.allure.add_logs()
-        utils.allure.add_html()
 
     if settings.config.context == 'bstack':
         utils.allure.add_xml()
