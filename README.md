@@ -25,8 +25,9 @@ bstack_accesskey=accesskey
 5. Создать отдельные `.env` для необходимых контекстов запуска:
 
 <details><summary>Для запуска на Browserstack</summary>
+<br>
 
-Наименование файла —`.env.bstack`, внутри него:
+Создать `.env.bstack`, внутри него указать:
 ```dotenv
 projectName='Your project'
 buildName=Your build name
@@ -39,8 +40,9 @@ timeout=4
 </details>
 
 <details><summary>Для запуска локально на реальном девайсе</summary>
+<br>
 
-Наименование файла —`.env.local_real_device`, внутри него:
+Создать `.env.local_real_device`, внутри него указать:
 ```dotenv
 app=apk.apk
 remote_url=http://127.0.0.1:4723
@@ -51,8 +53,9 @@ timeout=5
 </details>
 
 <details><summary>Для запуска локально на эмуляторе</summary>
+<br>
 
-Наименование файла —`.env.local_real_device`, внутри него:
+Создать `.env.local_emulator`, внутри него указать:
 ```dotenv
 app=apk.apk
 remote_url=http://127.0.0.1:4723
@@ -62,7 +65,6 @@ timeout=1
 ```
 </details>
 
-
 6. Запустить тест-кейсы, указав необходимый контекст:
 
 ```bash
@@ -70,14 +72,14 @@ context='bstack' pytest tests/android
 ```
 
 ```bash
-context='real_device' pytest tests/android
+context='local_real_device' pytest tests/android
 ```
 
 ```bash
-context='local_real_device' pytest tests/android
+context='local_emulator' pytest tests/android
 ```
 
 7. Сформировать отчет
 ```bash
-allure serve allure-results/
+allure serve allure-results
 ```
