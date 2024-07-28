@@ -25,7 +25,10 @@ def set_up_management():
             browser.config.hold_driver_at_exit = settings.config.hold_driver_at_exit
             browser.config.timeout = settings.config.timeout
 
-        if settings.config.context == 'local_real_device':
+        if (
+            settings.config.context == 'local_real_device'
+            or settings.config.context == 'local_emulator'
+        ):
             browser.config.driver = webdriver.Remote(
                 settings.config.remote_url, options=settings.to_driver_options()
             )
@@ -49,7 +52,10 @@ def set_up_management():
         utils.allure.add_xml()
         utils.allure.add_video(session_id)
 
-    if settings.config.context == 'real_device':
+    if (
+        settings.config.context == 'local_real_device'
+        or settings.config.context == 'local_emulator'
+    ):
         utils.allure.add_xml()
 
     with step('Tear down session'):

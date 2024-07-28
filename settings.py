@@ -11,7 +11,9 @@ load_dotenv()
 
 class Config(BaseSettings):
 
-    context: Literal['bstack', 'local_web', 'local_real_device'] = 'local_real_device'
+    context: Literal['bstack', 'local_web', 'local_real_device', 'local_emulator'] = (
+        'local_real_device'
+    )
 
     base_url: str = 'https://www.wikipedia.org'
     driver_name: str = 'chrome'
@@ -24,6 +26,7 @@ class Config(BaseSettings):
 
     app: str = 'app-alpha-universal-release.apk'
     deviceName: str = 'Google Pixel 5'
+    udid: str = 'BGHBB20A07211632123121111'
     appWaitActivity: str = 'org.wikipedia.*'
 
     remote_url: str = 'http://hub.browserstack.com/wd/hub'
@@ -47,8 +50,10 @@ def to_driver_options():
         config.appWaitActivity,
     )
 
-    if config.context == 'local_real_device':
+    if config.context == 'local_real_device' or config.context == 'local_emulator':
         options.set_capability("app", file.path(config.app))
+        options.set_capability("deviceName", config.deviceName)
+        options.set_capability("udid", config.udid)
 
     if config.context == 'bstack':
         options.load_capabilities(
